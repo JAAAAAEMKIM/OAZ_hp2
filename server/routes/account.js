@@ -34,7 +34,6 @@ router.post('/signup', (req, res) => {
     Account.findOne({ username: req.body.username }, (err, exists) => {
         if (err) throw err;
 
-        console.log('username: '+ req.body.username);  
         if(exists){
             return res.status(409).json({
                 error: "USERNAME EXISTS",

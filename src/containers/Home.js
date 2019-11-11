@@ -1,4 +1,4 @@
-// src/containers/Home.js
+// src/containers/Home.js //메모가 여기에
 import React from 'react';
 import { connect } from 'react-redux';
 import { Write, MemoList } from 'components';
@@ -57,7 +57,7 @@ class Home extends React.Component {
                     // TRIGGER LOAD NEW MEMO
                     this.loadNewMemo().then(
                         () => {
-                            Materialize.toast('Success!', 2000);
+                            Materialize.toast('Success!', 2000, 'blue');
                         }
                     );
                 } else {
@@ -75,11 +75,11 @@ class Home extends React.Component {
                             setTimeout(()=> {location.reload(false);}, 2000);
                             break;
                         case 2:
-                            $toastContent = $('<span style="color: #FFB4BA">Please write something</span>');
+                            $toastContent = $('<span style="color: #B00000">Please write something</span>');
                             Materialize.toast($toastContent, 2000);
                             break;
                         default:
-                            $toastContent = $('<span style="color: #FFB4BA">Something Broke</span>');
+                            $toastContent = $('<span style="color: #B00000">Something Broke</span>');
                             Materialize.toast($toastContent, 2000);
                             break;
                     }

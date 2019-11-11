@@ -3,9 +3,6 @@ import React from 'react';
 import Authentication from '../components/Authentication';
 import { connect } from 'react-redux';
 import { registerRequest } from '../actions/authentication';
-import { createBrowserHistory } from 'history'
-
-const browserHistory = createBrowserHistory();
 
 class Register extends React.Component {
     constructor(props) {
@@ -19,8 +16,8 @@ class Register extends React.Component {
         return this.props.registerRequest(id, pw).then(
             () => {
                 if(this.props.status === "SUCCESS") {
-                    Materialize.toast('Success! Please log in.', 2000);
-                    browserHistory.push('/login');
+                    Materialize.toast('Success! Please log in.', 2000, 'blue');
+                    this.props.history.push('/login');
                     return true;
                 } else {
                     /*
@@ -35,7 +32,8 @@ class Register extends React.Component {
                         'Username already exists'
                     ];
 
-                    let $toastContent = $('<span style="color: #FFB4BA">' + errorMessage[this.props.errorCode - 1] + '</span>');
+                    console.log(this.props.errorCode.response.data.code)
+                    let $toastContent = $('<span style="color: #B00000">' + errorMessage[this.props.errorCode.response.data.code - 1] + '</span>');
                     Materialize.toast($toastContent, 2000);
                     return false;
                 }

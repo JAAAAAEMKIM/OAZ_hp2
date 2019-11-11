@@ -6,7 +6,8 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import { createBrowserHistory } from 'history'
 import 'style.css';
-import {App, Home, Login, Register, oazHome } from 'containers';
+import { oazHome } from 'components'; 
+import {App, Home, Login, Register} from 'containers';
 import {Board} from 'components'
 
 // Redux
@@ -30,6 +31,7 @@ ReactDOM.render(
                     <Route exact path="/home" component={Board}/>
 
                     <Route exact path="/guessipan" component={App}/>
+                    {/* App이 Nav bar */}
                     <Route exact path="/guessipan" component={Home}/>
                     
                     <Route path="/login" component={Login}/>

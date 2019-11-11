@@ -58,7 +58,7 @@ class App extends React.Component {
     handleLogout() {
         this.props.logoutRequest().then(
             () => {
-                Materialize.toast('Good Bye!', 2000);
+                Materialize.toast('Good Bye!', 2000, 'blue');
 
                 // EMPTIES THE SESSION
                 let loginData = {
@@ -67,6 +67,7 @@ class App extends React.Component {
                 };
 
                 document.cookie = 'key=' + btoa(JSON.stringify(loginData));
+                this.props.history.push('/');
             }
         );
     }

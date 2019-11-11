@@ -24,7 +24,7 @@ class Memo extends React.Component {
         const memoView = (
             <div className="card">
                 <div className="info">
-                    <a className="username">{this.props.data.Writer}</a> wrote a log · <TimeAgo date = {this.props.data.date.created}/>
+                    <a className="username">{this.props.data.writer}</a> wrote a log · <TimeAgo date = {this.props.data.date.created}/>
                     { ownership ? dropDownMenu : undefined }
                     <div className="option-button">
                         <a className='dropdown-button' 
