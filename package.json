@@ -45,6 +45,7 @@
     "babel-preset-react": "^6.24.1",
     "braces": "^3.0.2",
     "css-loader": "^3.2.0",
+    "dotenv-webpack": "^1.7.0",
     "express-session": "^1.17.0",
     "mongoose": "^5.7.7",
     "morgan": "^1.9.1",
