@@ -8,7 +8,10 @@ class Authentication extends React.Component {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            id: "",
+            name: "",
+            provider: ""
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
@@ -64,6 +67,22 @@ class Authentication extends React.Component {
     }
     
     render() {
+
+        const responseGoogle = (res) => {
+            console.log("success\n");
+            console.log(res)
+            this.setState({
+                id:res.googleId,
+                name:res.profileObj.name,
+                provider:'google',
+            });        
+        }
+    
+        const responseFail = (err) => {
+            console.log('failed')
+            console.error(err.tokenObj);
+        }
+
         const inputBoxes = (
             <div>
                 <div className="input-field col s12 username">
@@ -101,7 +120,15 @@ class Authentication extends React.Component {
                 <div className="footer">
                     <div className="card-content">
                         <div className="right" >
-                        New Here? <Link to="/register">Create an account</Link>
+                        New Here? 
+                        <Link to="/register">Create an account</Link>
+                        <GoogleLogin
+                            clientId='1035768709066-nnscppnashf35buct2cr54pivtdkvqg5.apps.googleusercontent.com'
+                            buttonText="Sign Up with Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseFail}
+                            cookiePolicy={'single_host_origin'}
+                            />
                         </div>
                     </div>
                 </div>
