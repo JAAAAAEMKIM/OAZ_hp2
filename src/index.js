@@ -17,8 +17,6 @@ import reducers from 'reducers';
 import thunk from 'redux-thunk';
 const store = createStore(reducers, applyMiddleware(thunk));
 
-// var browserHistory = createBrowserHistory();
-
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(

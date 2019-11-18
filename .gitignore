@@ -1,3 +1,4 @@
 .jshintrc
 .tern-project
+.env
 node_modules

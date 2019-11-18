@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
 
@@ -57,7 +58,8 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new Dotenv()
     ],
 
     module: {

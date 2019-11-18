@@ -10,10 +10,6 @@ import PropTypes from 'prop-types'
 import { getStatusRequest, logoutRequest } from '../actions/authentication';
 import { connect } from 'react-redux';
 
-import { createBrowserHistory } from 'history'
-
-const browserHistory = createBrowserHistory();
-
 class oazHome extends React.Component{
 
     constructor(props) {
@@ -42,6 +38,7 @@ class oazHome extends React.Component{
     render(){
         // console.log(this.handleLogout)
 
+<<<<<<< HEAD
         const Fullpage = () => (
             <ReactFullpage
             callbacks = {"onLeave"}
@@ -77,6 +74,11 @@ class oazHome extends React.Component{
               }}
             />
           );
+=======
+        // const Fullpage = (isLoggedIn) => (
+            
+        //   );
+>>>>>>> 21854ae6cfc1926bc3ac23a70a9d1fab21468573
 
         const login = (
             <ul>
@@ -96,7 +98,52 @@ class oazHome extends React.Component{
 
         return (
                 <div>
-                    <Fullpage title="하나와영 홈페이지"></Fullpage>
+                    <ReactFullpage
+                    callbacks = {"onLeave"}
+                    anchors = {["firstPage", "secondPage", "thirdPage"]}
+                    scrollOverflow = {false}
+                    navigation
+                    // licenseKey = {'YOUR_KEY_HERE'}
+                    scrollingSpeed = {1000} /* Options here */
+                    render={({ state, fullpageApi }) => {
+                
+                        return (
+                            <div>
+                                <div className="section" style={{ width:"100%", height:"100%", textAlign: "center"}}>
+                                    {/* <AwesomeSlider style={{width:"100%", height:"100%"}}>
+                                        <div data-src="https://images.mypetlife.co.kr/content/uploads/2019/07/12153720/cat-4265304_1920.jpg" />
+                                        <div data-src="https://img9.yna.co.kr/etc/inner/KR/2019/04/08/AKR20190408066300073_01_i_P2.jpg" />
+                                        <div data-src="https://i.ytimg.com/vi/lUkrXEMMJSg/maxresdefault.jpg" />
+                                    </AwesomeSlider> 
+                                    
+                                    전체화면 슬라이더가 잘 안되서 차라리 조그만 갤러리처럼 넣는게 좋을 것 같아요
+                                    
+                                    */}
+                                    
+                                    <h1>OAZ HOMEPAGE</h1>
+                                    <p/><p/><p/>
+                                    <ul>
+                                        <Link to="/home" className="brand-logo center"><h5>Home</h5><p/></Link>
+                                        { this.props.status.isLoggedIn ? logout : login }
+                                        <h6>OR</h6><p/>
+                                        <Link to="/register" className="brand-logo center"><h5>Register</h5></Link>
+                                    </ul>
+                
+                                </div>
+                                <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
+                                    <h3>뭘 넣으면 좋을까요?</h3>
+                                </div>
+                                <div className="section" style={{backgroundColor:"#0798ec", color:"white",  textAlign: "center"}}>
+                                    <h3>Slide up! </h3>
+                                    <a onClick={() => fullpageApi.moveTo(1)} style={{fontStyle:{fontcolor:"white"}}}>
+                                        Move Up!
+                                    </a>
+                                </div>
+                
+                            </div>
+                        );
+                    }}
+                    />
                 </div>
         );
     };

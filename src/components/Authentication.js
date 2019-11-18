@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-
+import { GoogleLogin } from 'react-google-login';
 
 class Authentication extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            id: "",
+            name: "",
+            provider: "",
+            auth: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
@@ -64,6 +68,26 @@ class Authentication extends React.Component {
     }
     
     render() {
+
+        const responseGoogle = (res) => {
+            console.log("success\n");
+            console.log(res)
+            this.setState({
+                id:res.googleId,
+                name:res.profileObj.name,
+                provider:'google',
+                auth: true
+            });
+            
+            console.log(this.state.auth)
+            // window.location.reload();
+        }
+    
+        const responseFail = (err) => {
+            console.log('failed')
+            console.error(err.tokenObj);
+        }
+
         const inputBoxes = (
             <div>
                 <div className="input-field col s12 username">
@@ -101,7 +125,20 @@ class Authentication extends React.Component {
                 <div className="footer">
                     <div className="card-content">
                         <div className="right" >
-                        New Here? <Link to="/register">Create an account</Link>
+                        New Here? 
+                        <Link to="/register">Create Account</Link>
+                        {/* {this.state.auth
+                        ?
+                        <Link to="/register">Sign Up</Link>
+                        :
+                        <GoogleLogin
+                            redirectUri= "http://localhost:4000/home"
+                            clientId= {process.env.LICENSE_KEY}
+                            buttonText="Sign Up with Google"
+                            onSuccess={responseGoogle}
+                            onFailure={responseFail}
+                            cookiePolicy={'single_host_origin'}
+                            />} */}
                         </div>
                     </div>
                 </div>
@@ -110,6 +147,7 @@ class Authentication extends React.Component {
         );
 
         const registerView = (
+            this.state.auth ?
             <div className="card-content">
                 <div className="row">
                     {inputBoxes}
@@ -117,6 +155,15 @@ class Authentication extends React.Component {
                         onClick={this.handleRegister}>CREATE</a>
                 </div>
             </div>
+            :
+            <GoogleLogin
+                redirectUri= "http://localhost:4000/home"
+                clientId= {process.env.LICENSE_KEY}
+                buttonText="Sign Up with Google"
+                onSuccess={responseGoogle}
+                onFailure={responseFail}
+                cookiePolicy={'single_host_origin'}
+                />
         );
         return (
             <div className="container auth">
