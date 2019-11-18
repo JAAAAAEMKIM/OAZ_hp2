@@ -4,7 +4,6 @@ import './oazhome.css';
 import ReactFullpage from '@fullpage/react-fullpage'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "fullpage.js/vendors/scrolloverflow"; 
-import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import PropTypes from 'prop-types'
 import { getStatusRequest, logoutRequest } from '../actions/authentication';
@@ -13,8 +12,6 @@ import { connect } from 'react-redux';
 // Import Image Sources
 import Logo from '../assets/images/logo.png';
 import SigninButton from '../assets/images/signin.png';
-import Intropage from '../assets/images/intro.png';
-import Timeline from '../assets/images/timeline.png'
 
 class oazHome extends React.Component{
 
@@ -43,15 +40,15 @@ class oazHome extends React.Component{
 
     render(){
         // console.log(this.handleLogout)
-        const Fullpage = () => (
-            <ReactFullpage
-            callbacks = {"onLeave"}
-            anchors = {["firstPage", "secondPage", "thirdPage"]}
-            scrollOverflow = {false}
-            navigation
-            // licenseKey = {'YOUR_KEY_HERE'}
-            scrollingSpeed = {1000} /* Options here */
-            render={({ state, fullpageApi }) => {
+        // const Fullpage = () => (
+        //     <ReactFullpage
+        //     callbacks = {"onLeave"}
+        //     anchors = {["firstPage", "secondPage", "thirdPage"]}
+        //     scrollOverflow = {false}
+        //     navigation
+        //     // licenseKey = {'YOUR_KEY_HERE'}
+        //     scrollingSpeed = {1000} /* Options here */
+        //     render={({ state, fullpageApi }) => {
           
                 // return (
                 //     <div>
@@ -75,9 +72,9 @@ class oazHome extends React.Component{
         
                 //     </div>
                 // );
-              }}
-            />
-          );
+        //       }}
+        //     />
+        //   );
 
 
         const login = (
@@ -95,14 +92,14 @@ class oazHome extends React.Component{
                 </Link>
             </ul>
         );
-
+        
         return (
                 <div>
                     <ReactFullpage
                     callbacks = {"onLeave"}
                     anchors = {["firstPage", "secondPage", "thirdPage"]}
                     scrollOverflow = {false}
-                    navigation
+                    navigation= {true}
                     // licenseKey = {'YOUR_KEY_HERE'}
                     scrollingSpeed = {1000} /* Options here */
                     render={({ state, fullpageApi }) => {
@@ -110,19 +107,14 @@ class oazHome extends React.Component{
                         return (
                             <div>
                                 <div className="section" style={{ width:"100%", height:"100%", textAlign: "center"}}>
-                                {/* <div className="section" style={{width:"100%", height:"100%", textAlign: "center"}}> */}
                                     <img 
                                         src = {Logo}/>
                                     <Link to="/home" className="home-button"><h5>Home</h5></Link>
                                         { this.props.status.isLoggedIn ? logout : login }
                                 </div>
-                                <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
-                                    <img style={{width:"100%", height:"100vh", textAlign: "center"}}
-                                        src = {Intropage}/>
+                                <div className="section" id="page2" style={{width:"100%", height:"100vh", textAlign: "center"}}>
                                 </div>
-                                <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
-                                    <img style={{width:"100%", height:"100vh", textAlign: "center"}}
-                                        src = {Timeline}/>
+                                <div className="section" id= "page3" style={{width:"100%", height:"100vh", textAlign: "center"}}>
                                 </div>
                                 {/* <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
                                     <h3>뭘 넣으면 좋을까요?</h3>

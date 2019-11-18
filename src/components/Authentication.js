@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
 import Logo from '../assets/images/logo.png';
+import Form from 'react-bootstrap/Form';
+
 
 class Authentication extends React.Component {
     constructor(props) {
@@ -150,11 +152,53 @@ class Authentication extends React.Component {
         const registerView = (
             this.state.auth ?
             <div className="card-content">
+                <Form>                    
+                    <Form.Group controlId="formBasicEmail" >
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control placeholder="Enter Name" type="text"/>
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                    </Form.Group>
+                    
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Student ID</Form.Label>
+                        <Form.Control placeholder="Enter Student ID" type="number" name="quantity" min="1900000000" max="2030000000"/>
+                        <Form.Text className="text-muted">
+                        </Form.Text>
+                    </Form.Group>
+                    
+                   
+                    <Form.Group controlId="formBasicEmail" >
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" placeholder="Enter email"  
+                            name="username"
+                            onChange={this.handleChange}
+                            value={this.state.username} />
+                        <Form.Text className="text-muted">
+                        We'll never share your email with anyone else.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" placeholder="Password" 
+                            name="password"
+                            className="validate"
+                            onChange={this.handleChange}
+                            value={this.state.password}
+                            onKeyPress={this.handleKeyPress}/>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="Check me out" />
+                    </Form.Group>
                 <div className="row">
-                    {inputBoxes}
+                    {/* {inputBoxes} */}
                     <a className="waves-effect waves-light btn"
                         onClick={this.handleRegister}>CREATE</a>
                 </div>
+                </Form>
+
             </div>
             :
             <GoogleLogin
@@ -170,7 +214,7 @@ class Authentication extends React.Component {
             <div className="container auth">
                 <Link to="/">
                     <div className="logo">
-                        <img src = {Logo} style={{height:"200px"}} resizeMode="contain"/>
+                        <img src = {Logo} style={{height:"200px"}}/>
                     </div>
                 </Link>
                 <div className="card">

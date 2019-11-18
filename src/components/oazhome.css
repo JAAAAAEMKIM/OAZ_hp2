@@ -14,3 +14,13 @@
     top: 1%;
     right: 5%;
 }
+
+#page2{
+    background: url("../assets/images/intro.png") no-repeat center center ;
+    background-size: cover;
+}
+
+#page3{
+    background: url("../assets/images/timeline.png") no-repeat center center ;
+    background-size: cover;
+}
