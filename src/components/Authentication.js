@@ -120,7 +120,11 @@ class Authentication extends React.Component {
         );
         return (
             <div className="container auth">
-                <Link className="logo" to="/">OAZ</Link>
+                <Link to="/">
+                    <div className="logo">
+                        <img src = "https://postfiles.pstatic.net/MjAxOTExMThfNTQg/MDAxNTc0MDA4NzExNDg5.RKC_7q5LttZMr3omVmOk_kT5asF4IQjuRVGSV6j-TKAg._1KVaOml3zBd3NOlcBf9bjIc9BrC7IKqdaK4G--62CIg.PNG.uglycat8/KakaoTalk_20191118_0044542213.png?type=w773"/>
+                    </div>
+                </Link>
                 <div className="card">
                     <div className="header blue white-text center">
                         <div className="card-content">{this.props.mode ? "LOGIN" : "REGISTER"}</div>
