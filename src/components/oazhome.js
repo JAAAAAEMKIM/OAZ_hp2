@@ -10,6 +10,12 @@ import PropTypes from 'prop-types'
 import { getStatusRequest, logoutRequest } from '../actions/authentication';
 import { connect } from 'react-redux';
 
+// Import Image Sources
+import Logo from '../assets/images/logo.png';
+import SigninButton from '../assets/images/signin.png';
+import Intropage from '../assets/images/intro.png';
+import Timeline from '../assets/images/timeline.png'
+
 class oazHome extends React.Component{
 
     constructor(props) {
@@ -37,8 +43,6 @@ class oazHome extends React.Component{
 
     render(){
         // console.log(this.handleLogout)
-
-<<<<<<< HEAD
         const Fullpage = () => (
             <ReactFullpage
             callbacks = {"onLeave"}
@@ -49,41 +53,37 @@ class oazHome extends React.Component{
             scrollingSpeed = {1000} /* Options here */
             render={({ state, fullpageApi }) => {
           
-                return (
-                    <div>
-                        <div className="section" style={{width:"100%", height:"100%", textAlign: "center"}}>
-                            <img style = {{}}
-                                src = "https://postfiles.pstatic.net/MjAxOTExMThfMjYz/MDAxNTc0MDA4MzY1OTAw.m0iK2ZscjesPu5QjZIqrv2FPvZ2-dSIPL5ySpx5S4v0g.Pn9Da0VIcMoGw-dzlS75B6t0TtCNi1KIXcy0CLmZqokg.PNG.uglycat8/KakaoTalk_20191118_0044542212.png?type=w773"
-                            />
-                            <Link to="/home" className="home-button"><h5>Home</h5></Link>
-                                { this.props.status.isLoggedIn ? logout : login }        
-                        </div>
-                        <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
-                            <img style={{width:"100%", height:"100vh", textAlign: "center"}}
-                                src = "https://postfiles.pstatic.net/MjAxOTExMThfMTY4/MDAxNTc0MDYwODk5ODQ5.jT676l9OqowwCBO1vrOK7J1JUA__0H1Z66XDH5Ddguwg.5AZRBFVTYOgRW9_vntCuqFChh-iJPTzomvmt0_1_YH0g.PNG.uglycat8/KakaoTalk_20191118_023206916_01.png?type=w773"
-                            />
-                        </div>
-                        <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
-                            <img style={{width:"100%", height:"100vh", textAlign: "center"}}
-                                src = "https://postfiles.pstatic.net/MjAxOTExMThfNTEg/MDAxNTc0MDYwODk5ODI1.DmZgR1u3ej7bgbzpSOxl0cUguSVY2JBpALLSKtwT8yEg.rkteABs9Zp5m03DEBCilSMN-TV4AD3lMFUCGfh8c8Kcg.PNG.uglycat8/KakaoTalk_20191118_023852403.png?type=w773"
-                            />
-                        </div>
+                // return (
+                //     <div>
+                //         <div className="section" style={{width:"100%", height:"100%", textAlign: "center"}}>
+                //             <img style = {{}}
+                //                 src = "https://postfiles.pstatic.net/MjAxOTExMThfMjYz/MDAxNTc0MDA4MzY1OTAw.m0iK2ZscjesPu5QjZIqrv2FPvZ2-dSIPL5ySpx5S4v0g.Pn9Da0VIcMoGw-dzlS75B6t0TtCNi1KIXcy0CLmZqokg.PNG.uglycat8/KakaoTalk_20191118_0044542212.png?type=w773"
+                //             />
+                //             <Link to="/home" className="home-button"><h5>Home</h5></Link>
+                //                 { this.props.status.isLoggedIn ? logout : login }        
+                //         </div>
+                //         <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
+                //             <img style={{width:"100%", height:"100vh", textAlign: "center"}}
+                //                 src = "https://postfiles.pstatic.net/MjAxOTExMThfMTY4/MDAxNTc0MDYwODk5ODQ5.jT676l9OqowwCBO1vrOK7J1JUA__0H1Z66XDH5Ddguwg.5AZRBFVTYOgRW9_vntCuqFChh-iJPTzomvmt0_1_YH0g.PNG.uglycat8/KakaoTalk_20191118_023206916_01.png?type=w773"
+                //             />
+                //         </div>
+                //         <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
+                //             <img style={{width:"100%", height:"100vh", textAlign: "center"}}
+                //                 src = "https://postfiles.pstatic.net/MjAxOTExMThfNTEg/MDAxNTc0MDYwODk5ODI1.DmZgR1u3ej7bgbzpSOxl0cUguSVY2JBpALLSKtwT8yEg.rkteABs9Zp5m03DEBCilSMN-TV4AD3lMFUCGfh8c8Kcg.PNG.uglycat8/KakaoTalk_20191118_023852403.png?type=w773"
+                //             />
+                //         </div>
         
-                    </div>
-                );
+                //     </div>
+                // );
               }}
             />
           );
-=======
-        // const Fullpage = (isLoggedIn) => (
-            
-        //   );
->>>>>>> 21854ae6cfc1926bc3ac23a70a9d1fab21468573
+
 
         const login = (
             <ul>
                     <Link to = "/login" className="login-button">
-                        <img src = "https://postfiles.pstatic.net/MjAxOTExMThfMTkx/MDAxNTc0MDEwMTMwMDk0.TDMMMOb7ECLvLKEN8j00KD8fOW68IeftwuRhJ8wOiA8g.h0JmKipupGcZhXsD78C8bQCYvCQT_lwcV0VQ3r5RDJkg.PNG.uglycat8/qwww.png?type=w773" />
+                        <img src = {SigninButton}/>
                     </Link>
             </ul>
         );
@@ -110,27 +110,21 @@ class oazHome extends React.Component{
                         return (
                             <div>
                                 <div className="section" style={{ width:"100%", height:"100%", textAlign: "center"}}>
-                                    {/* <AwesomeSlider style={{width:"100%", height:"100%"}}>
-                                        <div data-src="https://images.mypetlife.co.kr/content/uploads/2019/07/12153720/cat-4265304_1920.jpg" />
-                                        <div data-src="https://img9.yna.co.kr/etc/inner/KR/2019/04/08/AKR20190408066300073_01_i_P2.jpg" />
-                                        <div data-src="https://i.ytimg.com/vi/lUkrXEMMJSg/maxresdefault.jpg" />
-                                    </AwesomeSlider> 
-                                    
-                                    전체화면 슬라이더가 잘 안되서 차라리 조그만 갤러리처럼 넣는게 좋을 것 같아요
-                                    
-                                    */}
-                                    
-                                    <h1>OAZ HOMEPAGE</h1>
-                                    <p/><p/><p/>
-                                    <ul>
-                                        <Link to="/home" className="brand-logo center"><h5>Home</h5><p/></Link>
+                                {/* <div className="section" style={{width:"100%", height:"100%", textAlign: "center"}}> */}
+                                    <img 
+                                        src = {Logo}/>
+                                    <Link to="/home" className="home-button"><h5>Home</h5></Link>
                                         { this.props.status.isLoggedIn ? logout : login }
-                                        <h6>OR</h6><p/>
-                                        <Link to="/register" className="brand-logo center"><h5>Register</h5></Link>
-                                    </ul>
-                
                                 </div>
-                                <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
+                                <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
+                                    <img style={{width:"100%", height:"100vh", textAlign: "center"}}
+                                        src = {Intropage}/>
+                                </div>
+                                <div className="section" style={{width:"100%", height:"100vh", textAlign: "center"}}>
+                                    <img style={{width:"100%", height:"100vh", textAlign: "center"}}
+                                        src = {Timeline}/>
+                                </div>
+                                {/* <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
                                     <h3>뭘 넣으면 좋을까요?</h3>
                                 </div>
                                 <div className="section" style={{backgroundColor:"#0798ec", color:"white",  textAlign: "center"}}>
@@ -138,8 +132,7 @@ class oazHome extends React.Component{
                                     <a onClick={() => fullpageApi.moveTo(1)} style={{fontStyle:{fontcolor:"white"}}}>
                                         Move Up!
                                     </a>
-                                </div>
-                
+                                </div> */}
                             </div>
                         );
                     }}

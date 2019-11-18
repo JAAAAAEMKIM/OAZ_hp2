@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 
+import Logo from '../assets/images/logo.png';
+
 class Authentication extends React.Component {
     constructor(props) {
         super(props);
@@ -121,7 +123,6 @@ class Authentication extends React.Component {
                     </div>
                 </div>
 
-
                 <div className="footer">
                     <div className="card-content">
                         <div className="right" >
@@ -169,13 +170,10 @@ class Authentication extends React.Component {
             <div className="container auth">
                 <Link to="/">
                     <div className="logo">
-                        <img src = "https://postfiles.pstatic.net/MjAxOTExMThfNTQg/MDAxNTc0MDA4NzExNDg5.RKC_7q5LttZMr3omVmOk_kT5asF4IQjuRVGSV6j-TKAg._1KVaOml3zBd3NOlcBf9bjIc9BrC7IKqdaK4G--62CIg.PNG.uglycat8/KakaoTalk_20191118_0044542213.png?type=w773"/>
+                        <img src = {Logo} style={{height:"200px"}} resizeMode="contain"/>
                     </div>
                 </Link>
                 <div className="card">
-                    <div className="header blue white-text center">
-                        <div className="card-content">{this.props.mode ? "LOGIN" : "REGISTER"}</div>
-                    </div>
                     {this.props.mode ? loginView : registerView }
                 </div>
             </div>

@@ -35,6 +35,8 @@ body {
   .auth .card {
       width: 400px;
       margin: 0 auto;
+      border: 0px;
+      box-shadow: none;
   }
   
   
