@@ -3,6 +3,47 @@ import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 
 class Memo extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            editMode: false,
+            value: props.data.contents
+        };
+        this.toggleEdit = this.toggleEdit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
+    }
+
+    toggleEdit() {
+        if(this.state.editMode) {
+            let id = this.props.data._id;
+            let index = this.props.index;
+            let contents = this.state.value;
+            
+            this.props.onEdit(id, index, contents).then(() => {
+                this.setState({
+                    editMode: !this.state.editMode
+                });
+            })
+        } else {
+            this.setState({
+                editMode: !this.state.editMode
+            });   
+        }
+    }
+
+    handleChange(e) {
+        this.setState({
+            value: e.target.value
+        });
+    }
+
+    handleRemove() {
+        let id = this.props.data._id;
+        let index = this.props.index;
+        this.props.onRemove(id, index);
+    }
+    
     render() {
         
         const {data, ownership} = this.props;
@@ -14,27 +55,32 @@ class Memo extends React.Component {
                      data-activates={`dropdown-${data._id}`}>
                     <i className="material-icons icon-button">more_vert</i>
                 </a>
-                <ul id={`dropdown-${data._id}`} className='dropdown-content'>
-                    <li><a>Edit</a></li>
-                    <li><a>Remove</a></li>
+                <ul id={`dropdown-${this.props.data._id}`} className='dropdown-content'>
+                    <li><a onClick={this.toggleEdit}>Edit</a></li>
+                    <li><a onClick={this.handleRemove}>Remove</a></li>
                 </ul>
             </div>
+        );
+
+        let editedInfo = (
+            <span style={{color: '#AAB5BC'}}> · Edited <TimeAgo date={this.props.data.date.edited} live={true}/></span>
         );
         
         const memoView = (
             <div className="card">
                 <div className="info">
                     <a className="username">{this.props.data.writer}</a> wrote a log · <TimeAgo date = {this.props.data.date.created}/>
-                    { ownership ? dropDownMenu : undefined }
+                    {this.props.data.is_edited ? editedInfo : undefined }
+                    {this.props.ownership ? dropDownMenu : undefined}
                     <div className="option-button">
                         <a className='dropdown-button' 
                             id={`dropdown-button-${data._id}`} 
                             data-activates={`dropdown-${data._id}`}>
                             <i className="material-icons icon-button">more_vert</i>
                         </a>
-                        <ul id={`dropdown-${data._id}`} className='dropdown-content'>
-                            <li><a>Edit</a></li>
-                            <li><a>Remove</a></li>
+                        <ul id={`dropdown-${this.props.data._id}`} className='dropdown-content'>
+                            <li><a onClick={this.toggleEdit}>Edit</a></li>
+                            <li><a onClick={this.handleRemove}>Remove</a></li>
                         </ul>
                     </div>
                 </div>
@@ -48,9 +94,25 @@ class Memo extends React.Component {
             </div>
         )
 
+        const editView = (
+            <div className="write">
+                <div className="card">
+                    <div className="card-content">
+                        <textarea
+                            className="materialize-textarea"
+                            value={this.state.value}
+                            onChange={this.handleChange}></textarea>
+                    </div>
+                    <div className="card-action">
+                        <a onClick={this.toggleEdit}>OK</a>
+                    </div>
+                </div>
+            </div>
+        );
+
         return (
             <div className="container memo">
-                {memoView}
+                {this.state.editMode ? editView : memoView }
             </div>
         );
     }
@@ -75,7 +137,10 @@ class Memo extends React.Component {
 
 Memo.propTypes = {
     data: PropTypes.object,
-    ownership: PropTypes.bool
+    ownership: PropTypes.bool,
+    onEdit: PropTypes.func,
+    index: PropTypes.number,
+    onRemove: PropTypes.func
 };
 
 Memo.defaultProps = {
@@ -90,7 +155,14 @@ Memo.defaultProps = {
         },
         starred: [] 
     },
-    ownership: true
+    ownership: true,
+    onEdit: (id, index, contents) => {
+        console.error('onEdit function not defined');
+    },
+    index: -1,
+    onRemove: (id, index) => { 
+        console.error('remove function not defined'); 
+    }
 }
 
 

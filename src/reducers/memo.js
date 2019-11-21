@@ -10,15 +10,23 @@ const initialState = {
         status: 'INIT',
         data: [],
         isLast: false
+    },
+    edit: {
+        status: 'INIT',
+        error: -1,
+    },
+    remove: {
+        status: 'INIT',
+        error: -1
     }
 };
 
 export default function memo(state, action) {
-    if(typeof state === "undefined") {
+    if (typeof state === "undefined") {
         state = initialState;
     }
 
-    switch(action.type) {
+    switch (action.type) {
         case types.MEMO_POST:
             return update(state, {
                 post: {
@@ -46,8 +54,8 @@ export default function memo(state, action) {
                     status: { $set: 'WAITING' },
                 }
             });
-        case types.MEMO_LIST_SUCCESS: 
-            if(action.isInitial) {
+        case types.MEMO_LIST_SUCCESS:
+            if (action.isInitial) {
                 return update(state, {
                     list: {
                         status: { $set: 'SUCCESS' },
@@ -56,7 +64,7 @@ export default function memo(state, action) {
                     }
                 })
             } else {
-                if(action.listType === 'new') {
+                if (action.listType === 'new') {
                     return update(state, {
                         list: {
                             status: { $set: 'SUCCESS' },
@@ -70,16 +78,66 @@ export default function memo(state, action) {
                             data: { $push: action.data },
                             isLast: { $set: action.data.length < 6 }
                         }
-                    });    
-                }  
-             }
+                    });
+                }
+            }
         case types.MEMO_LIST_FAILURE:
             return update(state, {
                 list: {
                     status: { $set: 'FAILURE' }
                 }
             })
-        
+
+        case types.MEMO_EDIT:
+            return update(state, {
+                edit: {
+                    status: { $set: 'WAITING' },
+                    error: { $set: -1 },
+                    memo: { $set: undefined }
+                }
+            });
+        case types.MEMO_EDIT_SUCCESS:
+            return update(state, {
+                edit: {
+                    status: { $set: 'SUCCESS' },
+                },
+                list: {
+                    data: {
+                        [action.index]: { $set: action.memo }
+                    }
+                }
+            });
+        case types.MEMO_EDIT_FAILURE:
+            return update(state, {
+                edit: {
+                    status: { $set: 'FAILURE' },
+                    error: { $set: action.error }
+                }
+            });
+
+        case types.MEMO_REMOVE:
+            return update(state, {
+                remove: {
+                    status: { $set: 'WAITING' },
+                    error: { $set: -1 }
+                }
+            });
+        case types.MEMO_REMOVE_SUCCESS:
+            return update(state, {
+                remove: {
+                    status: { $set: 'SUCCESS' }
+                },
+                list: {
+                    data: { $splice: [[action.index, 1]] }
+                }
+            });
+        case types.MEMO_REMOVE_FAILURE:
+            return update(state, {
+                remove: {
+                    status: { $set: 'FAILURE' },
+                    error: { $set: action.error }
+                }
+            });
         default:
             return state;
     }
