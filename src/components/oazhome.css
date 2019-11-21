@@ -1,3 +1,6 @@
+
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
 .home-button {
     color: black;
     font-size: 1rem;
@@ -15,12 +18,11 @@
     right: 5%;
 }
 
-#page2{
-    background: url("../assets/images/intro.png") no-repeat center center ;
-    background-size: cover;
+.section{
+    font-family: 'nanumsquare';
 }
 
-#page3{
-    background: url("../assets/images/timeline.png") no-repeat center center ;
+#page3 {
+    background: url("../assets/images/background1.jpg") no-repeat center center ;
     background-size: cover;
 }
