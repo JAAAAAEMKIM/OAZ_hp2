@@ -20,7 +20,7 @@ class Board extends React.Component {
                     <h3>아무 글이나 리스트 쭊</h3>
                 </Col>
                 <Col xs>
-                    <h1>정보 공유</h1>
+                    <Link to='/information'>정보 공유</Link>
                     <h3>정보글 리스트 쭊</h3>
                 </Col>
 
