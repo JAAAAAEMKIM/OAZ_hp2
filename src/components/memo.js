@@ -12,6 +12,7 @@ class Memo extends React.Component {
         this.toggleEdit = this.toggleEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
+        this.handleStar = this.handleStar.bind(this);
     }
 
     toggleEdit() {
@@ -43,10 +44,18 @@ class Memo extends React.Component {
         let index = this.props.index;
         this.props.onRemove(id, index);
     }
+
+    handleStar() {
+        let id = this.props.data._id;
+        let index = this.props.index;
+        this.props.onStar(id, index); 
+    }
     
     render() {
         
         const {data, ownership} = this.props;
+
+        let starStyle = (this.props.data.starred.indexOf(this.props.currentUser) > -1) ? { color: '#ff9980' } : {} ;
 
         const dropDownMenu = (
             <div className="option-button">
@@ -88,8 +97,10 @@ class Memo extends React.Component {
                     {data.contents}
                 </div>
                 <div className="footer">
-                    <i className="material-icons log-footer-icon star icon-button">star</i>
-                    <span className="star-count">{data.starred.length}</span>
+                    <i className="material-icons log-footer-icon star icon-button"
+                    style={starStyle}
+                    onClick={this.handleStar}>star</i>
+                    <span className="star-count">{this.props.data.starred.length}</span>
                 </div>
             </div>
         )
@@ -140,7 +151,10 @@ Memo.propTypes = {
     ownership: PropTypes.bool,
     onEdit: PropTypes.func,
     index: PropTypes.number,
-    onRemove: PropTypes.func
+    onRemove: PropTypes.func,
+    onStar: PropTypes.func,
+    starStatus: PropTypes.object,
+    currentUser: PropTypes.string
 };
 
 Memo.defaultProps = {
@@ -162,7 +176,12 @@ Memo.defaultProps = {
     index: -1,
     onRemove: (id, index) => { 
         console.error('remove function not defined'); 
-    }
+    },
+    onStar: (id, index) => {
+        console.error('star function not defined');
+    },
+    starStatus: {},
+    currentUser: ''
 }
 
 
