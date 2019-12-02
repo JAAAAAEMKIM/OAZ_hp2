@@ -160,7 +160,7 @@ class oazHome extends React.Component{
                 
                         return (
                             <div>
-                                <div className="section" style={{ width:"100%", height:"100%", textAlign: "center"}}>
+                                <div className="section" style={{ width:"100%", height:"100%", textAlign: "center", margin: "0px auto"}}>
                                     <img src = {Logo}/>
                                     <Link to="/home" className="home-button"><h5 style={{fontWeight: "700"}}>Home</h5></Link>
                                         { this.props.status.isLoggedIn ? logout : login }
@@ -170,10 +170,10 @@ class oazHome extends React.Component{
                                     <h3 style={{fontWeight: 'Light'}}>고려대학교 전기전자공학부 학회</h3>
                                     <h1 style={{fontWeight: 'Regular'}}>하나와영</h1>
                                     <h1>-</h1>
-                                    <h5 style={{fontWeight: 'Light'}}>학회명은 컴퓨터가 이해하는 기본 숫자인 1과 0을 의미한다.</h5>
-                                    <h5 style={{fontWeight: 'Light'}}>전기전자공학부 전공학회로 92학번을 중심으로 1992년 겨울 결성되었다.</h5>
-                                    <h5 style={{fontWeight: 'Light'}}>주 분야는 컴퓨터 프로그래밍이고, 많은 토론과 세미나를 통해 역량을 키우고 있다.</h5>
-                                    <h5 style={{fontWeight: 'Light'}}>도서관 안내 프로그램 등 다수의 프로그램을 개발, 발표하였다.</h5>
+                                    <h5 style={{fontSize: '1rem', fontWeight: 'Light'}}>학회명은 컴퓨터가 이해하는 기본 숫자인 1과 0을 의미한다.</h5>
+                                    <h5 style={{fontSize: '1rem', fontWeight: 'Light'}}>전기전자공학부 전공학회로 92학번을 중심으로 1992년 겨울 결성되었다.</h5>
+                                    <h5 style={{fontSize: '1rem', fontWeight: 'Light'}}>주 분야는 컴퓨터 프로그래밍이고, 많은 토론과 세미나를 통해 역량을 키우고 있다.</h5>
+                                    <h5 style={{fontSize: '1rem', fontWeight: 'Light'}}>도서관 안내 프로그램 등 다수의 프로그램을 개발, 발표하였다.</h5>
                                     <br/><br/><br/>
                                 </div>
                                 <div className="section" id= "page3" style={{width:"100%", height:"100vh", textAlign: "center", color:"white", padding: "0% 30%"}}>

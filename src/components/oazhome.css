@@ -23,6 +23,7 @@
 }
 
 #page3 {
+    background-color: black;
     background: url("../assets/images/background1.jpg") no-repeat center center ;
     background-size: cover;
 }
