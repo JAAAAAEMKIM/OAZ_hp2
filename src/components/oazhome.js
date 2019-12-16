@@ -14,10 +14,12 @@ import Logo from '../assets/images/logo.png';
 import GrayLogo from '../assets/images/graylogo.png';
 import SigninButton from '../assets/images/signin.png';
 import SignoutButton from '../assets/images/signout.png';
-import Gallary1 from '../assets/images/gallary1.jpg';
-import Gallary2 from '../assets/images/gallary2.jpg';
-import Gallary3 from '../assets/images/gallary3.jpg';
-import Gallary4 from '../assets/images/gallary4.jpg';
+import gallery1 from '../assets/images/gallery1.jpg';
+import gallery2 from '../assets/images/gallery2.jpg';
+import gallery3 from '../assets/images/gallery3.jpg';
+import gallery4 from '../assets/images/gallery4.jpg';
+import gallery5 from '../assets/images/gallery5.jpg';
+import gallery6 from '../assets/images/gallery6.jpg';
 
 import Timeline from '@salmanul/react-simple-timeline';
 import '@salmanul/react-simple-timeline/styles/index.css';
@@ -105,28 +107,40 @@ class oazHome extends React.Component{
 
         const gallery =
         [{
-            src: Gallary1,
-            thumbnail: Gallary1,
+            src: gallery1,
+            thumbnail: gallery1,
             thumbnailWidth: 2016,
             thumbnailHeight: 1134
         },
         {
-            src: Gallary2,
-            thumbnail: Gallary2,
+            src: gallery2,
+            thumbnail: gallery2,
             thumbnailWidth: 2016,
             thumbnailHeight: 1134
         },
         {
-            src: Gallary3,
-            thumbnail: Gallary3,
+            src: gallery3,
+            thumbnail: gallery3,
             thumbnailWidth: 2016,
             thumbnailHeight: 1134
         },
         {
-            src: Gallary4,
-            thumbnail: Gallary4,
+            src: gallery4,
+            thumbnail: gallery4,
             thumbnailWidth: 2016,
             thumbnailHeight: 1134
+        },
+        {
+            src: gallery5,
+            thumbnail: gallery5,
+            thumbnailWidth: 4032,
+            thumbnailHeight: 3024
+        },
+        {
+            src: gallery6,
+            thumbnail: gallery6,
+            thumbnailWidth: 4032,
+            thumbnailHeight: 3024
         }]
 
         const history =  {
@@ -185,7 +199,7 @@ class oazHome extends React.Component{
                                     <h1></h1>
                                 </div>
                                 <div className="section" id= "page4" style={{backgroundColor:"#2E2E2E", padding:"0% 10%"}}>
-                                    <Gallery enableLightbox={false} enableImageSelection={false} margin={5} images={gallery}/>
+                                    <Gallery enableLightbox={false} enableImageSelection={false} margin={5} maxRows={2} images={gallery}/>
                                 </div>
                                 {/* <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
                                     <h3>뭘 넣으면 좋을까요?</h3>
