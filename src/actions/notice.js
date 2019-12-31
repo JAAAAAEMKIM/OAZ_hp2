@@ -29,8 +29,9 @@ export function noticePostRequest(contents) {
         // inform NOTICE POST API is starting
         dispatch(noticePost());
 
-        return axios.post('/api/notice/', { contents })
+        return axios.post('/api/notice/',  contents )
         .then((response) => {
+            console.log("please");
             dispatch(noticePostSuccess());
         }).catch((error) => {
             dispatch(noticePostFailure(error.response.data.code));

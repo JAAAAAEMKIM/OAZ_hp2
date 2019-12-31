@@ -10,10 +10,10 @@ class Register extends React.Component {
         this.handleRegister = this.handleRegister.bind(this);    
     }
 
-    handleRegister(id, pw) {
-        console.log("id: "+id);
+    handleRegister(name, stdno, id, pw) {
+        console.log("id: "+id, "name: ", name, "stdno: ", stdno, "pw: ", pw);
 
-        return this.props.registerRequest(id, pw).then(
+        return this.props.registerRequest(name, stdno, id, pw).then(
             () => {
                 if(this.props.status === "SUCCESS") {
                     Materialize.toast('Success! Please log in.', 2000, 'blue');
@@ -22,17 +22,21 @@ class Register extends React.Component {
                 } else {
                     /*
                         ERROR CODES:
-                            1: BAD USERNAME
+                            1: BAD ID
                             2: BAD PASSWORD
-                            3: USERNAME EXISTS
+                            3: ID EXISTS
+                            4: BAD USERNAME
+                            5: BAD STDNO
                     */
                     let errorMessage = [
-                        'Invalid Username',
+                        'Invalid ID',
                         'Password is too short',
-                        'Username already exists'
+                        'ID already exists',
+                        'Invalid Username',
+                        'Invalid Student ID',
                     ];
 
-                    console.log(this.props.errorCode.response.data.code)
+                    console.log("error code: ", this.props.errorCode.response.data.code)
                     let $toastContent = $('<span style="color: #B00000">' + errorMessage[this.props.errorCode.response.data.code - 1] + '</span>');
                     Materialize.toast($toastContent, 2000);
                     return false;
@@ -45,7 +49,6 @@ class Register extends React.Component {
         return (
             <div>
                 <Authentication mode = {false} onRegister={this.handleRegister}/>
-
             </div>
         );
     }
@@ -60,8 +63,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerRequest: (id, pw) => {
-            return dispatch(registerRequest(id, pw));
+        registerRequest: (username, stdno, id, pw) => {
+            return dispatch(registerRequest(username, stdno, id, pw));
         }
     };
 };

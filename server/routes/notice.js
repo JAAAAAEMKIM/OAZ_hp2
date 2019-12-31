@@ -38,7 +38,8 @@ router.post('/', (req, res) => {
     // CREATE NEW MEMO
     let notice = new Notice({
         writer: req.session.loginInfo.username,
-        contents: req.body.contents
+        contents: req.body.contents,
+        title: req.body.title
     });
 
     // SAVE IN DATABASE
@@ -54,7 +55,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     Notice.find()
     .sort({"_id": -1})
-    .limit(6)
+    .limit(10)
     .exec((err, notices) => {
         if(err) throw err;
         res.json(notices);
@@ -125,6 +126,7 @@ router.put('/:id', (req, res) => {
         }
 
         // MODIFY AND SAVE IN DATABASE
+        notice.title = req.body.title;
         notice.contents = req.body.contents;
         notice.date.edited = new Date();
         notice.is_edited = true;

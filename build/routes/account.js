@@ -40,7 +40,7 @@ router.post('/signup', function (req, res) {
     }
 
     // CHECK USER EXISTANCE
-    Account.findOne({ username: req.body.username }, function (err, exists) {
+    Account.findOne({ username: req.body.id }, function (err, exists) {
         if (err) throw err;
         if (exists) {
             return res.status(409).json({

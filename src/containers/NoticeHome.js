@@ -1,7 +1,7 @@
 // src/containers/Home.js //메모가 여기에
 import React from 'react';
 import { connect } from 'react-redux';
-import { Write, NoticeList } from 'components';
+import { Write_title, NoticeList } from 'components';
 import { 
     noticePostRequest,
     noticeListRequest, 
@@ -11,7 +11,7 @@ import {
     noticeStarRequest
 }from 'actions/notice';
 
-class Home extends React.Component {
+class NoticeHome extends React.Component {
     
     constructor(props) {
         super(props);        
@@ -210,8 +210,8 @@ class Home extends React.Component {
 
 
     render() {
-        const write = (<Write onPost={this.handlePost}/>); // 수정필요한 부분 this.{props.handlePost}
-
+        const write = (<Write_title onPost={this.handlePost}/>);
+        console.log(this);                 // 수정필요한 부분 this.{props.handlePost}
         return (
             <div className="wrapper">
                 { this.props.isLoggedIn ? write : undefined }
@@ -259,4 +259,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(NoticeHome);

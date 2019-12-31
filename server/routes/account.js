@@ -13,11 +13,15 @@ const router = express.Router();
 */
 
 router.post('/signup', (req, res) => {
+    console.log("request:", req.body)
+
     // CHECK USERNAME FORMAT
-    let usernameRegex = /^[a-z0-9]+$/;
-    if(!usernameRegex.test(req.body.username)) {
+    let usernameRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    let stdnoRegex = /^[0-9]*$/;
+
+    if(!usernameRegex.test(req.body.id)) {
         return res.status(400).json({
-            error: "BAD USERNAME",
+            error: "BAD ID",
             code: 1
         });
     }
@@ -31,19 +35,35 @@ router.post('/signup', (req, res) => {
     }
 
     // CHECK USER EXISTANCE
-    Account.findOne({ username: req.body.username }, (err, exists) => {
+    Account.findOne({ id: req.body.id }, (err, exists) => {
         if (err) throw err;
 
         if(exists){
             return res.status(409).json({
-                error: "USERNAME EXISTS",
+                error: "ID EXISTS",
                 code: 3
             });
         }
+    
+    if(req.body.username.length == 0 ) {
+        return res.status(400).json({
+            error: "BAD USERNAME",
+            code: 4
+        });
+    }
+
+    if(req.body.stdno.length != 10 || !stdnoRegex.test(req.body.stdno)) {
+        return res.status(400).json({
+            error: "BAD STDNO",
+            code: 5
+        });
+    }
             
     // CREATE ACCOUNT
     let account = new Account({
         username: req.body.username,
+        stdno: req.body.stdno,
+        id: req.body.id,
         password: req.body.password
     });
 
@@ -74,7 +94,7 @@ router.post('/signin', (req, res) => {
     }
 
     // FIND THE USER BY USERNAME
-    Account.findOne({ username: req.body.username}, (err, account) => {
+    Account.findOne({ id: req.body.id}, (err, account) => {
         if(err) throw err;
 
         // CHECK ACCOUNT EXISTANCY
@@ -97,7 +117,7 @@ router.post('/signin', (req, res) => {
         let session = req.session;
         session.loginInfo = {
             _id: account._id,
-            username: account.username
+            id: account.id
         };
 
         // RETURN SUCCESS

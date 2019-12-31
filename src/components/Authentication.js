@@ -14,6 +14,7 @@ class Authentication extends React.Component {
             username: "",
             password: "",
             id: "",
+            studentno: "",
             name: "",
             provider: "",
             auth: false
@@ -41,7 +42,7 @@ class Authentication extends React.Component {
     }
 
     handleLogin() {
-        let id = this.state.username;
+        let id = this.state.id;
         let pw = this.state.password;
         
         this.props.onLogin(id, pw).then(
@@ -56,15 +57,20 @@ class Authentication extends React.Component {
     }
 
     handleRegister() {
-        let id = this.state.username;
+        let id = this.state.id;
+        let name = this.state.username;
+        let stdno = this.state.studentno;
         let pw = this.state.password;
         
-        this.props.onRegister(id, pw).then(
+        console.log("register ","id: "+id, "name: ", name, "stdno: ", stdno, "pw: ", pw)
+        this.props.onRegister(name, stdno, id, pw).then(
             (result) => {
                 if(!result) {
                     this.setState({
-                        username: '',
-                        password: ''
+                        // username: '',
+                        // password: '',
+                        // studentno: '',
+                        // id : ''
                     });
                 }
             }
@@ -72,13 +78,13 @@ class Authentication extends React.Component {
     }
     
     render() {
-
         const responseGoogle = (res) => {
             console.log("success\n");
             console.log(res)
             this.setState({
-                id:res.googleId,
-                name:res.profileObj.name,
+                //id:res.googleId,
+                username:res.profileObj.name,
+                id: res.profileObj.email,
                 provider:'google',
                 auth: true
             });
@@ -95,13 +101,13 @@ class Authentication extends React.Component {
         const inputBoxes = (
             <div>
                 <div className="input-field col s12 username">
-                    <label>Username</label>
+                    <label>ID (Email)</label>
                     <input
-                    name="username"
+                    name="id"
                     type="text"
                     className="validate"
                     onChange={this.handleChange}
-                    value={this.state.username}/>
+                    value={this.state.id}/>
                 </div>
                 <div className="input-field col s12">
                     <label>Password</label>
@@ -130,18 +136,6 @@ class Authentication extends React.Component {
                         <div className="right" >
                         New Here? 
                         <Link to="/register">Create Account</Link>
-                        {/* {this.state.auth
-                        ?
-                        <Link to="/register">Sign Up</Link>
-                        :
-                        <GoogleLogin
-                            redirectUri= "http://localhost:4000/home"
-                            clientId= {process.env.LICENSE_KEY}
-                            buttonText="Sign Up with Google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseFail}
-                            cookiePolicy={'single_host_origin'}
-                            />} */}
                         </div>
                     </div>
                 </div>
@@ -153,39 +147,47 @@ class Authentication extends React.Component {
             this.state.auth ?
             <div className="card-content">
                 <Form>                    
-                    <Form.Group controlId="formBasicEmail" >
+                    <Form.Group  controlId="validationCustom01">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control placeholder="Enter Name" type="text"/>
-                        <Form.Text className="text-muted">
-                        </Form.Text>
+                        <Form.Control placeholder="Enter Name" 
+                            required
+                            name="username"
+                            defaultValue = {this.state.username}
+                            onChange={this.handleChange}/>
+                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                     
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group>
                         <Form.Label>Student ID</Form.Label>
-                        <Form.Control placeholder="Enter Student ID" type="number" name="quantity" min="1900000000" max="2030000000"/>
+                        <Form.Control placeholder="Enter Student ID" 
+                            required
+                            name="studentno"
+                            min="1900000000"
+                            max="2030000000"
+                            defaultValue = {this.state.studentno}
+                            onChange={this.handleChange}/>
                         <Form.Text className="text-muted">
                         </Form.Text>
                     </Form.Group>
                     
-                   
                     <Form.Group controlId="formBasicEmail" >
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email"  
-                            name="username"
-                            onChange={this.handleChange}
-                            value={this.state.username} />
+                        <Form.Control name="id" placeholder="Enter email"
+                            required
+                            defaultValue = {this.state.id}
+                            onChange={this.handleChange} />
                         <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" 
+                        <Form.Label>Password (>4)</Form.Label>
+                        <Form.Control required 
+                            type="password" placeholder="Password" 
                             name="password"
                             className="validate"
                             onChange={this.handleChange}
-                            value={this.state.password}
                             onKeyPress={this.handleKeyPress}/>
                     </Form.Group>
 
@@ -210,6 +212,19 @@ class Authentication extends React.Component {
                 cookiePolicy={'single_host_origin'}
                 />
         );
+
+        // const [validated, setValidated] = useState(false);
+
+        // const handleSubmit = event => {
+        //   const form = event.currentTarget;
+        //   if (form.checkValidity() === false) {
+        //     event.preventDefault();
+        //     event.stopPropagation();
+        //   }
+          
+        //   setValidated(true);
+        // };
+
         return (
             <div className="container auth">
                 <Link to="/">
@@ -234,7 +249,7 @@ Authentication.propTypes = {
 Authentication.defaultProps = {
     mode: true,
     onLogin: (id, pw) => { console.error("login function not defined"); },
-    onRegister: (id, pw) => { console.error("register function not defined"); }
+    onRegister: (username, stdno, id, pw) => { console.error("register function not defined"); }
 };
 
 
