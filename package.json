@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.16",
+    "@salmanul/react-simple-timeline": "^1.9.1",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-syntax-jsx": "^6.18.0",
@@ -28,6 +29,9 @@
     "react-dom": "^16.10.2",
     "react-flexbox-grid": "^2.1.2",
     "react-google-login": "^5.0.7",
+    "react-grid-gallery": "^0.5.5",
+    "react-image-timeline": "^3.0.3",
+    "react-native-naver-font": "^1.0.0",
     "react-redux": "^7.1.1",
     "react-router": "^5.1.2",
     "react-timeago": "^4.4.0",
