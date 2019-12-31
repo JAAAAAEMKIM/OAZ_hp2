@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Row, Col} from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
 
 class Board extends React.Component {
@@ -8,20 +7,20 @@ class Board extends React.Component {
         return (
             <div style={{width:"100%", display:"flex", flexWrap : "wrap", flexDirection: "row", justifyContent: "center"}}>
                 <div className="BoardList" style={BoardList}>
-                    <Link to='/notice' style={{fontWeight:"700", fontSize:"1.5rem"}}>공지 사항</Link>
+                    <Link to='/notice' style={{fontWeight:"700", fontSize:"1.5rem"}}>공지사항</Link>
                     <h3 style={{fontSize:"1.5rem"}}>공지사항 리스트</h3>
                 </div>
                 <div className="BoardList" style={BoardList}>
-                    <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>질문과 답변</h1>
-                    <h3 style={{fontSize:"1.5rem"}}>공지사항 리스트</h3>
+                    <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>기술 블로그</h1>
+                    <h3 style={{fontSize:"1.5rem"}}>리스트</h3>
                 </div>
                 <div className="BoardList" style={BoardList}>
-                    <Link to='/guessipan' style={{fontWeight:"700", fontSize:"1.5rem"}}>자유 게시판</Link>
-                    <h3 style={{fontSize:"1.5rem"}}>아무 글이나 리스트</h3>
+                    <Link to='/guessipan' style={{fontWeight:"700", fontSize:"1.5rem"}}>자유게시판</Link>
+                    <h3 style={{fontSize:"1.5rem"}}>리스트</h3>
                 </div>
                 <div className="BoardList" style={BoardList}>
-                    <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>정보 공유</h1>
-                    <h3 style={{fontSize:"1.5rem"}}>정보글 리스트</h3>
+                    <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>건의사항</h1>
+                    <h3 style={{fontSize:"1.5rem"}}>건의사항 리스트</h3>
                 </div>
             </div>
 

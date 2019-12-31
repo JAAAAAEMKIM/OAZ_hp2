@@ -7,7 +7,9 @@ import "fullpage.js/vendors/scrolloverflow";
 import PropTypes from 'prop-types'
 import { getStatusRequest, logoutRequest } from '../actions/authentication';
 import { connect } from 'react-redux';
-import Gallery from 'react-grid-gallery';
+import "bootstrap/dist/css/bootstrap.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap.css"
+import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 
 // Import Image Sources
 import Logo from '../assets/images/logo.png';
