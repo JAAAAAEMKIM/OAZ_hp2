@@ -19,7 +19,7 @@ class Memotest extends React.Component {
         const memoView = (
             <ListGroup.Item style={{padding:"5px", margin:"0px"}}>
             <div className="box" style={{fontSize:"15px", overflow:"hidden", boxSizing:"content-box", height:"20px"}}>
-                {data.contents}
+                {this.props.memo? data.contents: data.title}
             </div>
             </ListGroup.Item>
         )

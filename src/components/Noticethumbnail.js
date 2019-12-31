@@ -2,21 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Memotest} from 'components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {memoListRequest} from '../actions/memo'
 
-
-import ListGroup from 'react-bootstrap/ListGroup';
-
-class MemoThumbnail extends React.Component {
+class NoticeThumbnail extends React.Component {
     render() {
         const mapToComponents = data => {
-            return data.map((memo, i) => {
+            return data.map((notice, i) => {
+                console.log(i,"th ",notice.title)
                 if(i<=10){
                     return (
                         <Memotest
-                            memo = {true}
-                            data={memo}
-                            key={memo._id}
+                            memo = {false}
+                            data={notice}
+                            key={notice._id}
                         />);
                 }
                 
@@ -35,12 +32,12 @@ class MemoThumbnail extends React.Component {
     }
 }
 
-MemoThumbnail.propTypes = {
+NoticeThumbnail.propTypes = {
     data: PropTypes.array,
 };
 
-MemoThumbnail.defaultProps = {
+NoticeThumbnail.defaultProps = {
     data: [],
 };
 
-export default MemoThumbnail;
+export default NoticeThumbnail;

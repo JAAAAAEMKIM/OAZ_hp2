@@ -22,16 +22,16 @@ import axios from 'axios';
 ==============================================================================*/
 
 /* LOGIN */
-export function loginRequest(username, password) {
+export function loginRequest(id, password) {
     return (dispatch) => {
         // Inform Login API is starting
         dispatch(login());
 
         // API REQUEST
-        return axios.post('/api/account/signin', { username, password })
+        return axios.post('/api/account/signin', { id, password })
         .then((response) => {
             // SUCCEED
-            dispatch(loginSuccess(username));
+            dispatch(loginSuccess(id));
         }).catch((error) => {
             // FAILED
             dispatch(loginFailure());
@@ -59,12 +59,13 @@ export function loginFailure() {
 }
 
 /* REGISTER */
-export function registerRequest(username, password) {
+export function registerRequest(username, stdno, id, password) {
+    console.log("reg req: ", username, stdno, id, password)
     return (dispatch) => {
         // Inform Register API is starting
         dispatch(register());
 
-        return axios.post('/api/account/signup', { username, password })
+        return axios.post('/api/account/signup', { username, stdno, id, password })
         .then((response) => {
             dispatch(registerSuccess());
         }).catch((error) => {

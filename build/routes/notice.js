@@ -69,7 +69,7 @@ router.post('/', function (req, res) {
     READ MEMO: GET /api/notice
 */
 router.get('/', function (req, res) {
-    _notice2.default.find().sort({ "_id": -1 }).limit(6).exec(function (err, notices) {
+    _notice2.default.find().sort({ "_id": -1 }).limit(10).exec(function (err, notices) {
         if (err) throw err;
         res.json(notices);
     });

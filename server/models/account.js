@@ -7,6 +7,8 @@ const Schema = mongoose.Schema; // Data의 틀이 됨
 
 const Account = new Schema({ // Account는 이렇게 생겼다는 것을 정함
     username: String,
+    stdno: Number,
+    id: String,
     password: String, 
     created: { type: Date, default: Date.now }
 });
