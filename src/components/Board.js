@@ -121,7 +121,8 @@ class Board extends React.Component {
 
 const BoardList = {
     fontFamily: 'nanumsquare',
-    width: "200px",
+    width:"15%",
+    minWidth: "250px",
     height: "400px",
     borderRadius: "10px",
     background:"white",
