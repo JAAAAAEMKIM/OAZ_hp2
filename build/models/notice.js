@@ -13,6 +13,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Schema = _mongoose2.default.Schema;
 
 var Notice = new Schema({
+    title: String,
     writer: String,
     contents: String,
     starred: [String],

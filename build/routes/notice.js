@@ -54,7 +54,8 @@ router.post('/', function (req, res) {
     // CREATE NEW MEMO
     var notice = new _notice2.default({
         writer: req.session.loginInfo.username,
-        contents: req.body.contents
+        contents: req.body.contents,
+        title: req.body.title
     });
 
     // SAVE IN DATABASE
@@ -138,6 +139,7 @@ router.put('/:id', function (req, res) {
         }
 
         // MODIFY AND SAVE IN DATABASE
+        notice.title = req.body.title;
         notice.contents = req.body.contents;
         notice.date.edited = new Date();
         notice.is_edited = true;

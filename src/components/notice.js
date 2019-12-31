@@ -7,7 +7,8 @@ class Notice extends React.Component {
         super(props);
         this.state = {
             editMode: false,
-            value: props.data.contents
+            value_title: props.data.title,
+            value_value: props.data.contents
         };
         this.toggleEdit = this.toggleEdit.bind(this);
         this.handleChange = this.handleChange.bind(this);
