@@ -9,19 +9,17 @@ import { getStatusRequest, logoutRequest } from '../actions/authentication';
 import { connect } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css"
-import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
-
+import { MDBView, MDBMask, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 // Import Image Sources
 import Logo from '../assets/images/logo.png';
 import GrayLogo from '../assets/images/graylogo.png';
 import SigninButton from '../assets/images/signin.png';
 import SignoutButton from '../assets/images/signout.png';
-import gallery1 from '../assets/images/gallery1.jpg';
-import gallery2 from '../assets/images/gallery2.jpg';
-import gallery3 from '../assets/images/gallery3.jpg';
 import gallery4 from '../assets/images/gallery4.jpg';
 import gallery5 from '../assets/images/gallery5.jpg';
 import gallery6 from '../assets/images/gallery6.jpg';
+import gallery7 from '../assets/images/gallery7.jpg';
+import gallery8 from '../assets/images/gallery8.jpg';
 
 import Timeline from '@salmanul/react-simple-timeline';
 import '@salmanul/react-simple-timeline/styles/index.css';
@@ -107,44 +105,6 @@ class oazHome extends React.Component{
             </ul>
         );
 
-        const gallery =
-        [{
-            src: gallery1,
-            thumbnail: gallery1,
-            thumbnailWidth: 2016,
-            thumbnailHeight: 1134
-        },
-        {
-            src: gallery2,
-            thumbnail: gallery2,
-            thumbnailWidth: 2016,
-            thumbnailHeight: 1134
-        },
-        {
-            src: gallery3,
-            thumbnail: gallery3,
-            thumbnailWidth: 2016,
-            thumbnailHeight: 1134
-        },
-        {
-            src: gallery4,
-            thumbnail: gallery4,
-            thumbnailWidth: 2016,
-            thumbnailHeight: 1134
-        },
-        {
-            src: gallery5,
-            thumbnail: gallery5,
-            thumbnailWidth: 4032,
-            thumbnailHeight: 3024
-        },
-        {
-            src: gallery6,
-            thumbnail: gallery6,
-            thumbnailWidth: 4032,
-            thumbnailHeight: 3024
-        }]
-
         const history =  {
             status: "2019",
             nodes: [
@@ -177,7 +137,7 @@ class oazHome extends React.Component{
                         return (
                             <div>
                                 <div className="section" style={{ width:"100%", height:"100%", textAlign: "center", margin: "0px auto"}}>
-                                    <img src = {Logo}/>
+                                    <img src = {Logo} style={{width:"100%", maxWidth:"773px"}}/>
                                     <Link to="/home" className="home-button"><h5 style={{fontWeight: "700"}}>Home</h5></Link>
                                         { this.props.status.isLoggedIn ? logout : login }
                                 </div>
@@ -192,16 +152,81 @@ class oazHome extends React.Component{
                                     <h5 style={{fontSize: '1rem', fontWeight: 'Light'}}>도서관 안내 프로그램 등 다수의 프로그램을 개발, 발표하였다.</h5>
                                     <br/><br/><br/>
                                 </div>
-                                <div className="section" id= "page3" style={{width:"100%", height:"100vh", textAlign: "center", color:"white", padding: "0% 30%"}}>
+                                <div className="section" id= "page3" style={{width:"100%", height:"100vh", color:"white", padding: "0% 20%"}}>
                                     <Timeline
-                                        mode='horizontal'
+                                        mode='vertical'
                                         data={history}
                                         style={{fontWeight: 'Extrabold'}}
                                     />
                                     <h1></h1>
                                 </div>
-                                <div className="section" id= "page4" style={{backgroundColor:"#2E2E2E", padding:"0% 10%"}}>
-                                    <Gallery enableLightbox={false} enableImageSelection={false} margin={5} maxRows={2} images={gallery}/>
+                                <div className="section" id= "page4" style={{backgroundColor:"#2E2E2E", padding:"0%"}}>
+                                    <MDBContainer style={{width:"80%", margin:"0px auto", padding:"0px"}}>
+                                        <MDBRow style={{margin:"0px", padding:"0px"}}>
+                                            <MDBCol style={{margin:"0px", padding:"0px"}}>
+                                                <MDBView hover zoom>
+                                                    <img
+                                                        src={gallery4}
+                                                        className="img-fluid"
+                                                        alt=""
+                                                    />
+                                                    <MDBMask className="flex-center" overlay={"black-strong"}>
+                                                        <h1 style={{color:"white", fontWeight:"300", fontSize:"1.5rem", textAlign:"center"}}>중간발표<br/>2019.11.22</h1>
+                                                    </MDBMask>
+                                                </MDBView>
+                                            </MDBCol>
+                                            <MDBCol style={{margin:"0px", padding:"0px"}}>
+                                                <MDBView hover zoom>
+                                                    <img
+                                                        src={gallery5}
+                                                        className="img-fluid"
+                                                        alt=""
+                                                    />
+                                                    <MDBMask className="flex-center" overlay={"black-strong"}>
+                                                        <h1 style={{color:"white", fontWeight:"300", fontSize:"1.5rem", textAlign:"center"}}>중간발표<br/>2019.11.22</h1>
+                                                    </MDBMask>
+                                                </MDBView>
+                                            </MDBCol>
+                                            <MDBCol style={{margin:"0px", padding:"0px"}}>
+                                                <MDBView hover zoom>
+                                                    <img
+                                                        src={gallery6}
+                                                        className="img-fluid"
+                                                        alt=""
+                                                    />
+                                                    <MDBMask className="flex-center" overlay={"black-strong"}>
+                                                        <h1 style={{color:"white", fontWeight:"300", fontSize:"1.5rem", textAlign:"center"}}>중간발표<br/>2019.11.22</h1>
+                                                    </MDBMask>
+                                                </MDBView>
+                                            </MDBCol>
+                                        </MDBRow>
+                                        <MDBRow style={{margin:"0px", padding:"0px"}}>
+                                            <MDBCol style={{margin:"0px", padding:"0px"}}>
+                                                <MDBView hover zoom>
+                                                    <img
+                                                        src={gallery7}
+                                                        className="img-fluid"
+                                                        alt=""
+                                                    />
+                                                    <MDBMask className="flex-center" overlay={"black-strong"}>
+                                                        <h1 style={{color:"white", fontWeight:"300", fontSize:"1.5rem", textAlign:"center"}}>해커톤<br/>2019.12.29</h1>
+                                                    </MDBMask>
+                                                </MDBView>
+                                            </MDBCol>
+                                            <MDBCol style={{margin:"0px", padding:"0px"}}>
+                                                <MDBView hover zoom>
+                                                    <img
+                                                        src={gallery8}
+                                                        className="img-fluid"
+                                                        alt=""
+                                                    />
+                                                    <MDBMask className="flex-center" overlay={"black-strong"}>
+                                                        <h1 style={{color:"white", fontWeight:"300", fontSize:"1.5rem", textAlign:"center"}}>헤커톤<br/>2019.12.29</h1>
+                                                    </MDBMask>
+                                                </MDBView>
+                                            </MDBCol>
+                                        </MDBRow>
+                                    </MDBContainer>
                                 </div>
                                 {/* <div className="section" style={{backgroundColor:"#ff5f45", color:"white",  textAlign: "center"}}>
                                     <h3>뭘 넣으면 좋을까요?</h3>

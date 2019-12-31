@@ -17,6 +17,8 @@ import reducers from 'reducers';
 import thunk from 'redux-thunk';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import 'mdbreact/dist/css/mdb.css';
+
 const store = createStore(reducers, applyMiddleware(thunk));
 
 const rootElement = document.getElementById('root');
