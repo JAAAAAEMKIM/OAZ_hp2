@@ -24,6 +24,7 @@ class Board extends React.Component {
                     <h3 style={{fontSize:"1.5rem"}}>정보글 리스트</h3>
                 </div>
             </div>
+
         );
     }
 }
