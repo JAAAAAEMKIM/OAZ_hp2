@@ -11,7 +11,7 @@ import {
     noticeStarRequest
 }from 'actions/notice';
 
-class Home extends React.Component {
+class NoticeHome extends React.Component {
     
     constructor(props) {
         super(props);        
@@ -259,4 +259,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(NoticeHome);

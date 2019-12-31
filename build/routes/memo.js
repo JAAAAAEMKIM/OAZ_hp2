@@ -68,7 +68,7 @@ router.post('/', function (req, res) {
     READ MEMO: GET /api/memo
 */
 router.get('/', function (req, res) {
-    _memo2.default.find().sort({ "_id": -1 }).limit(6).exec(function (err, memos) {
+    _memo2.default.find().sort({ "_id": -1 }).limit(120).exec(function (err, memos) {
         if (err) throw err;
         res.json(memos);
     });

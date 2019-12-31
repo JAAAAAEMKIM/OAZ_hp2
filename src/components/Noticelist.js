@@ -6,6 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class NoticeList extends React.Component {
     render() {
         const mapToComponents = data => {
+            //console.log(data, "notice");
             return data.map((notice, i) => {
                 return (<Notice 
                             data={notice}
