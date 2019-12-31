@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const Notice = new Schema({
+    title: String,
     writer: String,
     contents: String,
     starred: [String],

@@ -35,6 +35,7 @@ class Write extends React.Component {
     }
 
     render() {
+        console.log("contents: " + this.state.contents);
         return (
             <div className="container write">
                 <div className="card">
