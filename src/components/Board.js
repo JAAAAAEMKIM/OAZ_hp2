@@ -8,7 +8,7 @@ class Board extends React.Component {
         return (
             <div style={{width:"100%", display:"flex", flexWrap : "wrap", flexDirection: "row", justifyContent: "center"}}>
                 <div className="BoardList" style={BoardList}>
-                    <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>공지사항</h1>
+                    <Link to='/notice' style={{fontWeight:"700", fontSize:"1.5rem"}}>공지 사항</Link>
                     <h3 style={{fontSize:"1.5rem"}}>공지사항 리스트</h3>
                 </div>
                 <div className="BoardList" style={BoardList}>
