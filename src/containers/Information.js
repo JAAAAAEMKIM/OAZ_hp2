@@ -11,7 +11,7 @@ import {
     memoStarRequest
 }from 'actions/memo';
 
-class Home extends React.Component {
+class Information extends React.Component {
     
     constructor(props) {
         super(props);        
@@ -259,4 +259,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Information);
