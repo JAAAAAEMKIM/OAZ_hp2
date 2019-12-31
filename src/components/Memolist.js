@@ -16,6 +16,7 @@ class MemoList extends React.Component {
                             onRemove={this.props.onRemove}
                             onStar={this.props.onStar}
                             currentUser={this.props.currentUser}
+                            paddingLeft={0}
                 />);
             });
         };

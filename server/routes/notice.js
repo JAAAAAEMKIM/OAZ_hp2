@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     Notice.find()
     .sort({"_id": -1})
-    .limit(6)
+    .limit(10)
     .exec((err, notices) => {
         if(err) throw err;
         res.json(notices);

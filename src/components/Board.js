@@ -5,19 +5,17 @@ import { connect } from 'react-redux';
 import {Row, Col} from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
 import {MemoThumbnail} from 'components';
+import { NoticeThumbnail } from 'components';
+import { noticeListRequest } from 'actions/notice';
 import { 
-    memoPostRequest,
     memoListRequest, 
-    memoEditRequest,
-    memoRemoveRequest, 
-    memoRemoveFromData, 
-    memoStarRequest
 }from 'actions/memo';
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.loadNewMemo = this.loadNewMemo.bind(this);
+        this.loadNewNotice = this.loadNewNotice.bind(this);
     }
 
     componentDidMount() {
@@ -36,11 +34,28 @@ class Board extends React.Component {
                 loadMemoLoop();
             }
         );
+        
+        // LOAD NEW MEMO EVERY 10 SECONDS
+        const loadNoticeLoop = () => {
+            this.loadNewNotice().then(
+                () => {
+                    this.noticeLoaderTimeoutId = setTimeout(loadNoticeLoop, 5000);
+                }
+            );
+        };
+        this.props.noticeListRequest(true).then(
+            () => {
+                console.log(this.props.noticeData);
+                // BEGIN NEW MEMO LOADING LOOP
+                loadNoticeLoop();
+            }
+        );
     }
 
     componentWillUnmount() {
         // STOPS THE loadMemoLoop
         clearTimeout(this.memoLoaderTimeoutId);
+        clearTimeout(this.noticeLoaderTimeoutId);
     }
 
     loadNewMemo() {
@@ -57,12 +72,30 @@ class Board extends React.Component {
         return this.props.memoListRequest(false, 'new', this.props.memoData[0]._id);
     }
 
+    loadNewNotice() {
+        // CANCEL IF THERE IS A PENDING REQUEST
+        if(this.props.noticeStatus === 'WAITING') 
+            return new Promise((resolve, reject)=> {
+                resolve();
+            });
+        
+        // IF PAGE IS EMPTY, DO THE INITIAL LOADING
+
+        console.log("notice data",this.props.noticeData)
+        if(this.props.noticeData.length === 0 )
+            return this.props.noticeListRequest(true);
+            
+        return this.props.noticeListRequest(false, 'new', this.props.noticeData[0]._id);
+    }
+
     render() {
         return (
             <div style={{width:"100%", display:"flex", flexWrap : "wrap", flexDirection: "row", justifyContent: "center"}}>
                 <div className="BoardList" style={BoardList}>
                     <Link to='/notice' style={{fontWeight:"700", fontSize:"1.5rem"}}>공지 사항</Link>
-                    <h3 style={{fontSize:"1.5rem"}}>공지사항 리스트</h3>
+                    <NoticeThumbnail className="jaemin" data={this.props.noticeData} 
+                        currentUser={this.props.currentUser}>
+                    </NoticeThumbnail>
                 </div>
                 <div className="BoardList" style={BoardList}>
                     <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>질문과 답변</h1>
@@ -74,6 +107,7 @@ class Board extends React.Component {
                     <MemoThumbnail className="jaemin" data={this.props.memoData} 
                         currentUser={this.props.currentUser}>
                     </MemoThumbnail>
+
                 </div>
                 <div className="BoardList" style={BoardList}>
                     <h1 style={{fontWeight:"700", fontSize:"1.5rem"}}>정보 공유</h1>
@@ -101,7 +135,9 @@ const mapStateToProps = (state) => {
         isLoggedIn: state.authentication.status.isLoggedIn,
         currentUser: state.authentication.status.currentUser,
         memoData: state.memo.list.data,
+        noticeData: state.notice.list.data,
         listStatus: state.memo.list.status,
+        noticeStatus: state.notice.list.status,
     };
 };
 
@@ -109,6 +145,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         memoListRequest: (isInitial, listType, id, username) => {
             return dispatch(memoListRequest(isInitial, listType, id, username));
+        },
+        noticeListRequest: (isInitial, listType, id, username) => {
+            return dispatch(noticeListRequest(isInitial, listType, id, username));
         },
     };
 };
