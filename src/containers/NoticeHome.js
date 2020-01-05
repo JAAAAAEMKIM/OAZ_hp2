@@ -210,8 +210,7 @@ class NoticeHome extends React.Component {
 
 
     render() {
-        const write = (<Write_title onPost={this.handlePost}/>);
-        console.log(this);                 // 수정필요한 부분 this.{props.handlePost}
+        const write = (<Write_title onPost={this.handlePost}/>);     // 수정필요한 부분 this.{props.handlePost}
         return (
             <div className="wrapper">
                 { this.props.isLoggedIn ? write : undefined }

@@ -11,5 +11,5 @@ import NoticeList from './Noticelist';
 import Board from './Board';
 import oazHome from './oazhome';
 
-export { Header, Authentication, Write, Memo, MemoList, Notice, NoticeList, Board, oazHome, MemoThumbnail, Memotest };
+export { Header, Authentication, Write, Write_title, Memo, MemoList, Notice, NoticeList, Board, oazHome, MemoThumbnail, Memotest };
 

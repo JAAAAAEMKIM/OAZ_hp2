@@ -105,6 +105,7 @@ class Memo extends React.Component {
             </div>
         )
 
+
         const editView = (
             <div className="write">
                 <div className="card">

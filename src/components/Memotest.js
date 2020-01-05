@@ -2,7 +2,6 @@ import React from 'react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 import ListGroup from 'react-bootstrap/ListGroup';
-import "./Board.css"
 
 class Memotest extends React.Component {
     constructor(props) {

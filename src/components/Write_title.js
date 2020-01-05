@@ -50,42 +50,40 @@ class Write_title extends React.Component {
 
         const newcontents = this.state.contents;
         newcontents.title = this.state.titles;
-        newcontents.contents     = this.state.content;
+        newcontents.contents = this.state.content;
         this.setState({
             contents: newcontents
         });
 
         let contents = this.state.contents;
-
-
-        console.log(this.state);
         
         console.log("hi"+contents);
-        console.log(this.state);
         this.props.onPost(contents).then((contents) => {
             // this.props.onPost((contents) => {
                 console.log("inner")
                 this.setState({
-                    contents: ""
+                    contents: {
+                        contents : '',
+                        title : ''
+                    },
+                    titles: '',
+                    content : ''
                 });
             }
         );
     }
 
     render() {
-        console.log("value_title: " + this.state.titles);
-        console.log("value_contents: " + this.state.content);
         return (
             <div className="container write">
                 <div className="card">
-                    <div className="card-title">
+                    <div className="card-content">
                         <textarea 
-                            className="materialize-titlearea" 
+                            className="materialize-textarea"
+                            id = "title"
                             placeholder="Write down your title"
                             value={this.state.titles}
                             onChange={this.handleChange_title}></textarea>
-                    </div>
-                    <div className="card-content">
                         <textarea 
                             className="materialize-textarea" 
                             placeholder="Write down your memo"

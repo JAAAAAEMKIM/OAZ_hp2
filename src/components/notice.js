@@ -7,20 +7,34 @@ class Notice extends React.Component {
         super(props);
         this.state = {
             editMode: false,
-            value_title: props.data.title,
-            value_value: props.data.contents
+            contents: {
+                title: props.data.title,
+                contents: props.data.contents
+            },
+            titles: props.data.title,
+            content: props.data.contents
         };
         this.toggleEdit = this.toggleEdit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleChange_title = this.handleChange_title.bind(this);
+        this.handleChange_contents = this.handleChange_contents.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleStar = this.handleStar.bind(this);
     }
+    
 
     toggleEdit() {
         if(this.state.editMode) {
             let id = this.props.data._id;
             let index = this.props.index;
-            let contents = this.state.value;
+            const newcontents = this.state.contents;
+            newcontents.title = this.state.titles;
+            newcontents.contents = this.state.content;
+            this.setState({
+                contents: newcontents
+            });
+            let contents = this.state.contents;
+            
+    
             
             this.props.onEdit(id, index, contents).then(() => {
                 this.setState({
@@ -34,9 +48,15 @@ class Notice extends React.Component {
         }
     }
 
-    handleChange(e) {
+    handleChange_title(e) {
         this.setState({
-            value: e.target.value
+            titles: e.target.value
+        });
+    }
+
+    handleChange_contents(e) {
+        this.setState({
+            content: e.target.value
         });
     }
 
@@ -94,6 +114,9 @@ class Notice extends React.Component {
                         </ul>
                     </div>
                 </div>
+                <div className="card-title">
+                    {data.title}
+                </div>
                 <div className="card-content">
                     {data.contents}
                 </div>
@@ -109,11 +132,17 @@ class Notice extends React.Component {
         const editView = (
             <div className="write">
                 <div className="card">
+                    <div className="card-title">
+                        <textarea
+                            className="materialize-titlearea"
+                            value={this.state.titles}
+                            onChange={this.handleChange_title}></textarea>
+                    </div>
                     <div className="card-content">
                         <textarea
                             className="materialize-textarea"
-                            value={this.state.value}
-                            onChange={this.handleChange}></textarea>
+                            value={this.state.content}
+                            onChange={this.handleChange_contents}></textarea>
                     </div>
                     <div className="card-action">
                         <a onClick={this.toggleEdit}>OK</a>
@@ -162,6 +191,7 @@ Notice.defaultProps = {
     data: {
         _id: 'id1234567890',
         writer: 'Writer',
+        title: 'Title',
         contents: 'Contents',
         is_edited: false,
         date: {

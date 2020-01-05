@@ -118,7 +118,7 @@ export function noticeEditRequest(id, index, contents) {
     return (dispatch) => {
         dispatch(noticeEdit());
 
-        return axios.put('/api/notice/' + id, {contents})
+        return axios.put('/api/notice/' + id, contents)
         .then((response) => {
             dispatch(noticeEditSuccess(index, response.data.notice));
         }).catch((error) => {
@@ -143,7 +143,7 @@ export function noticeEditSuccess(index, notice) {
 
 export function noticeEditFailure(error) {
     return {
-        type: NOTICE_EDIT_FAILIURE,
+        type: NOTICE_EDIT_FAILURE,
         error
     };
 }

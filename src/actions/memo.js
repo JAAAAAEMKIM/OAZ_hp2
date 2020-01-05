@@ -142,7 +142,7 @@ export function memoEditSuccess(index, memo) {
 
 export function memoEditFailure(error) {
     return {
-        type: MEMO_EDIT_FAILIURE,
+        type: MEMO_EDIT_FAILURE,
         error
     };
 }

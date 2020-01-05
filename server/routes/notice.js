@@ -74,6 +74,8 @@ router.get('/', (req, res) => {
 */
 router.put('/:id', (req, res) => {
 
+    console.log("hi");
+
     // CHECK MEMO ID VALIDITY
     if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
         return res.status(400).json({
@@ -124,7 +126,6 @@ router.put('/:id', (req, res) => {
                 code: 5
             });
         }
-
         // MODIFY AND SAVE IN DATABASE
         notice.title = req.body.title;
         notice.contents = req.body.contents;
@@ -302,7 +303,7 @@ router.post('/star/:id', (req, res) => {
             res.json({
                 success: true,
                 'has_starred': !hasStarred,
-                notice,
+                notice
             });
         });
     });

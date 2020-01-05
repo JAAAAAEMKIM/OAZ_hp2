@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Board.css';
 import { connect } from 'react-redux';
 import {Row, Col} from 'react-flexbox-grid';
 import {Link} from 'react-router-dom';
