@@ -14,7 +14,7 @@
   "dependencies": {
     "@fullpage/react-fullpage": "^0.1.16",
     "@salmanul/react-simple-timeline": "^1.9.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-syntax-jsx": "^6.18.0",
     "bcryptjs": "^2.4.3",
